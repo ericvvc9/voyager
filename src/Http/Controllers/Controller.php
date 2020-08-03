@@ -158,7 +158,7 @@ abstract class Controller extends BaseController
         }
 
         // Rename folders for newly created data through media-picker
-        if ($request->session()->has($slug.'_path') || $request->session()->has($slug.'_uuid')) {
+        if (session_id() !== ''  && $request->session()->has($slug.'_path') || $request->session()->has($slug.'_uuid')) {
             $old_path = $request->session()->get($slug.'_path');
             $uuid = $request->session()->get($slug.'_uuid');
             $new_path = str_replace($uuid, $data->getKey(), $old_path);
